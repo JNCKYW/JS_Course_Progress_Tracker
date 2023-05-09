@@ -75,3 +75,6 @@ const ania = {
 ania.calcAge = janusz.calcAge;
 
 ania.calcAge();
+
+const f = janusz.calcAge;
+f();
