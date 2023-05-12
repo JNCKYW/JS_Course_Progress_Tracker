@@ -78,7 +78,7 @@ ania.calcAge();
 
 const f = janusz.calcAge;
 f();
-*/
+
 
 const janusz = {
   year: 1994,
@@ -142,3 +142,36 @@ friend.age = 27;
 
 console.log(friend.age);
 console.log(me.age);
+*/
+
+//PRIMITIVES TYPES
+let lastName = `Williams`;
+let oldLastName = lastName;
+lastName = `Davies`;
+
+console.log(lastName, oldLastName);
+
+//OBJECTS REFERENCE TYPES
+const jessica = {
+  firstName: `Jessica`,
+  lastName: `Williams`,
+  age: 27,
+};
+
+const marriedJessica = jessica;
+
+marriedJessica.lastName = `Davies`;
+
+console.log(marriedJessica.lastName, jessica.lastName);
+
+//COPYING OBJECTS
+const jessica2 = {
+  firstName: `Jessica`,
+  lastName: `Williams`,
+  age: 27,
+};
+
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = `Davies`;
+
+console.log(jessica2.lastName, jessicaCopy.lastName);
