@@ -1,6 +1,6 @@
 'use strict';
 
-function calcAge(birthYear) {
+/*function calcAge(birthYear) {
   const age = 2037 - birthYear;
   function printAge() {
     const output = `${firstName} You are ${age} years old born in ${birthYear}`;
@@ -78,3 +78,67 @@ ania.calcAge();
 
 const f = janusz.calcAge;
 f();
+*/
+
+const janusz = {
+  year: 1994,
+  firstName: `Janusz`,
+  calcAge: function () {
+    console.log(this);
+    console.log(2023 - this.year);
+
+    //SOLUTION 1
+    //   const self = this; //bez tej linijki nie bylibyśmy w stanie używać this keyword w poniszej funkcji
+    //   const isMillenial = function () {
+    //     console.log(self.year >= 1981 && self.year <= 1996);
+    //   };
+    //   isMillenial();
+    // },
+
+    //SOLUTION 2
+    // arrow function bierze this keyword z funkcji która ją otacza więc będzie takie samo jak dla funkcji calcAge
+    const isMillenial = () => {
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    isMillenial();
+  },
+
+  //tutaj bedzie undefined bo arrow function bierze this keyword z funkcji w ktorej sie znajduje a tutaj nie jest w żadnmej funkcji!!
+  greet: () => console.log(`Hey ${this.firstName}`),
+};
+
+janusz.greet();
+janusz.calcAge();
+
+//ARGUMENTS KEYWORD
+
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+
+console.log(addExpr(2, 5, 6, 7, 8, 9));
+
+//arguments keyword pokazuje nam wszystkie argumenty które zostały przekazane jakie zostały przekazane funkcji
+//dodawanie więcej argumentów niż to pierwotnie zadeklarowano w funkcji jest kompletnie w porządku
+//po prostu nie zostaną wykonane bo nie ma w funkcji opisane co z nimi zrobić
+
+//OBJECTS VS PRIMITIVES
+
+let age = 30;
+let oldAge = age;
+age = 31;
+
+console.log(age);
+console.log(oldAge);
+
+const me = {
+  name: `Janusz`,
+  age: 30,
+};
+
+const friend = me;
+friend.age = 27;
+
+console.log(friend.age);
+console.log(me.age);
