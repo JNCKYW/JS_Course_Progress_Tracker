@@ -99,3 +99,20 @@ console.log(open, close);
 //const [starter, main] = restaurant.order(2, 0);
 //console.log(starter, main);
 
+const xxx = {
+  buba: `BUBA`,
+  czoko: `CZOKO`,
+  shaggy: `SHAGGY`,
+  pets: {
+    age1: 8,
+    age2: [8, 1],
+  },
+};
+
+const {
+  pets: {
+    age2: [czokoAge, humusAge],
+  },
+} = xxx;
+
+console.log(czokoAge, humusAge);
