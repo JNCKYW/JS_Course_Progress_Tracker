@@ -116,3 +116,74 @@ const {
 } = xxx;
 
 console.log(czokoAge, humusAge);
+
+const arr = [7, 8, 9];
+
+const newArr = [1, 2, ...arr];
+
+console.log(newArr);
+
+console.log(...newArr);
+
+const starterMenu = ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"];
+const mainMenu = ["Pizza", "Pasta", "Risotto"];
+const newMenu = [...mainMenu, `gnocci`];
+console.log(newMenu);
+
+//Copy array
+const mainMenuCopy = [...mainMenu];
+
+//Join 2 or more arrays together
+const menu2 = [...starterMenu, ...mainMenu];
+console.log(menu);
+
+/*const ingredients = [
+  prompt(`ingredient 1: `),
+  prompt(`ingredient 2: `),
+  prompt(`ingredient 3: `),
+];
+
+restaurant.orderPasta(...ingredients);
+
+const newRestaurant = { ...restaurant, founder: `Guiseppe`, foundedIn: 1998 };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };*/
+
+const starterMenu = ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"];
+const mainMenu = ["Pizza", "Pasta", "Risotto"];
+
+const menu2 = [...starterMenu, ...mainMenu];
+
+const [pizza, , risotto, ...otherFood] = menu2;
+
+console.log(pizza, risotto, otherFood);
+
+const {
+  openingHours: {
+    sat: { open: open1, close: close1 },
+    ...weekdays
+  },
+} = restaurant;
+
+console.log(weekdays);
+console.log(open1, close1);
+
+const add = function (...numbers) {
+  let sum = 0;
+  for (let x = 0; x < numbers.length; x++) {
+    sum += numbers[x];
+  }
+  console.log(numbers, sum);
+};
+
+add(1, 2, 3);
+add(1, 2, 3, 4, 5, 6);
+add(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+const d = [10, 20, 30];
+
+add(...d);
+
+restaurant.orderPizza(`buba`, `czoko`, `shaggy`);
+restaurant.orderPizza(`buba`);
