@@ -37,8 +37,17 @@ const restaurant = {
     starterID = 0,
   }) {
     console.log(
-      `Your Delivery is almost complete. ${this.starterMenu[starterID]} and ${this.mainMenu[mainID]} will be delivered to ${address} at ${delTime}.`
+      `Your Delivery is 
+      lmost complete. ${this.starterMenu[starterID]} and ${this.mainMenu[mainID]} will be delivered to ${address} at ${delTime}.`
     );
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Pasta with ${ing1}, ${ing2} and ${ing3}`);
+  },
+
+  orderPizza: function (mainIng, ...otherIng) {
+    console.log(`Pizza with ${mainIng} and ${otherIng}`);
   },
 };
 
@@ -99,7 +108,7 @@ console.log(open, close);
 //const [starter, main] = restaurant.order(2, 0);
 //console.log(starter, main);
 
-const xxx = {
+/*const xxx = {
   buba: `BUBA`,
   czoko: `CZOKO`,
   shaggy: `SHAGGY`,
@@ -148,7 +157,7 @@ restaurant.orderPasta(...ingredients);
 const newRestaurant = { ...restaurant, founder: `Guiseppe`, foundedIn: 1998 };
 console.log(newRestaurant);
 
-const restaurantCopy = { ...restaurant };*/
+const restaurantCopy = { ...restaurant };
 
 const starterMenu = ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"];
 const mainMenu = ["Pizza", "Pasta", "Risotto"];
@@ -187,3 +196,75 @@ add(...d);
 
 restaurant.orderPizza(`buba`, `czoko`, `shaggy`);
 restaurant.orderPizza(`buba`);
+
+console.log(0 || `text`);
+console.log(undefined || null || 0 || 3);
+
+restaurant.guestNum = 10;
+
+//zamiast tego poniżej zrób short circuiting z operatorem ||
+const guests = restaurant.guestNum ? restaurant.guestNum : 0;
+console.log(guests);
+
+const guests2 = restaurant.guestNum || 0;
+console.log(guests2);
+
+console.log(`------------^^^---OR---^^^---------------`);
+console.log(`------------vvv---AND---vvv--------------`);
+
+console.log(7 && 0);
+console.log(10 && 9 && null && 3);
+console.log(`text` && 3 && `buba`);
+
+//zamiast tego poniżej zrób short circuiting z operatorem &&
+if (restaurant.orderPizza) {
+  console.log(
+    restaurant.orderPizza(`mushrooms`, `mozarella`, `chorizo`, `olives`)
+  );
+}
+
+restaurant.orderPizza &&
+  restaurant.orderPizza(`mushrooms`, `mozarella`, `chorizo`, `olives`);
+
+restaurant.guestNum = 0;
+
+const guests2 = restaurant.guestNum || 10;
+console.log(guests2);
+
+const nullishGuests = restaurant.guestNum ?? 0;
+console.log(nullishGuests);*/
+
+const rest1 = {
+  name: `Capri`,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: `Buba`,
+  owner: `Czoko`,
+};
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+console.log(rest1.numGuests);
+console.log(rest2.numGuests);
+
+// rest2.owner = rest2.owner && `<ANONYMOUS>`;
+
+rest2.owner &&= `<ANONYMOUS>`;
+
+console.log(rest2.owner);
+
+let michal = 10;
+
+michal &&= 20;
+
+console.log(michal);
+
