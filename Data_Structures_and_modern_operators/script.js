@@ -327,4 +327,20 @@ for (const [x, y] of menu.entries()) {
   console.log(`${x + 1}: ${y}`);
 }
 
+//OPTIONAL CHAINING
 
+console.log(restaurant.openingHours.mon?.open);
+
+const days = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
+
+for (const day of days) {
+  //console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? `we are closed`;
+  console.log(`${day} we open at ${open}`);
+}
+
+console.log(restaurant.order?.(0, 1) ?? `Nie ma takiej metody`);
+
+const arr = [{ name: `Janusz`, age: 24 }];
+
+console.log(arr[0]?.name ?? `tablica jest pusta`);
