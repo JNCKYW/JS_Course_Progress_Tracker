@@ -344,3 +344,22 @@ console.log(restaurant.order?.(0, 1) ?? `Nie ma takiej metody`);
 const arr = [{ name: `Janusz`, age: 24 }];
 
 console.log(arr[0]?.name ?? `tablica jest pusta`);
+
+//OBJECTS FOR LOOP
+
+const names = Object.keys(restaurant.openingHours);
+let str = `We are open on: `;
+
+for (const day of names) {
+  str += `${day}, `;
+}
+console.log(str);
+
+const values = Object.values(restaurant.openingHours);
+console.log(values);
+
+const entries = Object.entries(restaurant.openingHours);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we are open at ${open} and closed ${close}`);
+}
