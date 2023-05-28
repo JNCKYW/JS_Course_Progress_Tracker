@@ -1,6 +1,6 @@
 "use strict";
 
-/*console.log(`------------CHALLANGE-1-----------`);
+console.log(`------------CHALLANGE-1-----------`);
 
 const game = {
   team1: "Bayern Munich",
@@ -43,6 +43,7 @@ const game = {
   },
 };
 
+/*
 const [players1, players2] = game.players;
 console.log(players1);
 console.log(players2);
@@ -75,9 +76,9 @@ const printGoals = function (...playerNames) {
 printGoals(...game.scored);
 
 team2 > team1 && console.log(game.team1);
-team1 > team2 && console.log(game.team2);
+team1 > team2 && console.log(game.team2);*/
 
-console.log(`------------CHALLANGE-2-----------`);*/
+console.log(`------------CHALLANGE-2-----------`);
 
 //TASK 1
 
