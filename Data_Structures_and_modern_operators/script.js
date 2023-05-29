@@ -268,7 +268,7 @@ let michal = 10;
 michal &&= 20;
 
 console.log(michal);
-*/
+
 
 const restaurant = {
   name: "Classico Italiano",
@@ -363,3 +363,78 @@ const entries = Object.entries(restaurant.openingHours);
 for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we are open at ${open} and closed ${close}`);
 }
+*/
+
+console.log(`#########################################`);
+console.log(`#######-----------SETS------------#######`);
+console.log(`#########################################`);
+const ordersSet = new Set([
+  `Pasta`,
+  `Pizza`,
+  `Pizza`,
+  `Pasta`,
+  `Pizza`,
+  `Risotto`,
+]);
+
+console.log(ordersSet);
+
+console.log(new Set(`Jonas`));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has(`Pizza`));
+ordersSet.add(`Garlic Bread`);
+ordersSet.add(`Garlic Bread`);
+console.log(ordersSet);
+ordersSet.delete(`Pizza`);
+console.log(ordersSet);
+//ordersSet.clear()  -  usuwa wszystkie dane z setu
+
+for (const x of ordersSet) {
+  console.log(x);
+}
+
+let arr = [`a`, `b`, `c`, `a`, `b`];
+
+let newSet = new Set(arr);
+arr = [...newSet];
+console.log(newSet);
+console.log(arr);
+
+newSet = [...newSet];
+console.log(newSet);
+
+console.log(`#########################################`);
+console.log(`#######-----------MAPS------------#######`);
+console.log(`#########################################`);
+
+const rest = new Map();
+
+rest.set(`name`, `Classico Italiano`);
+rest
+  .set(1, `Wawa`)
+  .set(2, `LDZ`)
+  .set(`open`, 11)
+  .set(`close`, 22)
+  .set(true, `We are open`)
+  .set(false, `We are closed`);
+
+console.log(rest);
+
+const time = 12;
+console.log(rest.get(time > rest.get(`open`) && time < rest.get(`close`)));
+
+rest.delete(`open`);
+console.log(rest);
+console.log(rest.has(true));
+console.log(rest.size);
+//rest.clear(); - usuwa całą mape
+
+const arr1 = [1, 2];
+rest.set(arr1, `TEST`);
+
+console.log(rest.get(arr1));
+
+rest.set(document.querySelector(`h1`), `Heading`);
+console.log(rest);
+
