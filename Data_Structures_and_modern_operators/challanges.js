@@ -98,3 +98,33 @@ for (const odd of values1) {
 console.log(`The avarage odd is ${avgOdd / values1.length}`);
 
 //TASK 3
+
+const names = Object.keys(game.odds);
+
+for (const name of names) {
+  if (name === `team1` || name === `team2`) {
+    console.log(`Odd of victory ${game[name]}: ${game.odds[name]}`);
+  } else {
+    console.log(`Odd of draw: ${game.odds.x}`);
+  }
+}
+
+//TASK 4
+
+const scorers = {};
+
+game.scored.forEach((element) => {
+  scorers[element] = (scorers[element] || 0) + 1;
+});
+
+console.log(scorers);
+
+//SOLUTION #2
+
+// So the solution is to loop over the array, and add the array elements as object properties, and then increase the count as we encounter a new occurence of a certain element
+// const scorers = {};
+// for (const player of game.scored) {
+//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// }
+// */
+
