@@ -144,10 +144,7 @@ const gameEvents = new Map([
   [92, "Yellow card"],
 ]);
 
-let arr = [gameEvents.values()];
-const setArr = new Set(...arr);
-arr = [...setArr];
-console.log(arr);
+const events = [...new Set(gameEvents.values())];
 
 gameEvents.delete(64);
 console.log(gameEvents);
