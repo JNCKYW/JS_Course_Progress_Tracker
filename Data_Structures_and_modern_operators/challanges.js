@@ -128,3 +128,39 @@ console.log(scorers);
 // }
 // */
 
+console.log(`------------CHALLANGE-3-----------`);
+
+const gameEvents = new Map([
+  [17, "GOAL"],
+  [36, "Substitution"],
+  [47, "GOAL"],
+  [61, "Substitution"],
+  [64, "Yellow card"],
+  [69, "Red card"],
+  [70, "Substitution"],
+  [72, "Substitution"],
+  [76, "GOAL"],
+  [80, "GOAL"],
+  [92, "Yellow card"],
+]);
+
+let arr = [gameEvents.values()];
+const setArr = new Set(...arr);
+arr = [...setArr];
+console.log(arr);
+
+gameEvents.delete(64);
+console.log(gameEvents);
+
+let eventCounter = 90 / gameEvents.size;
+console.log(`An event happened, on 
+average, every ${eventCounter} minutes`);
+
+for (const [a, b] of gameEvents) {
+  if (a < 45) {
+    console.log(`[FIRST HALF] ${a}: ${b} `);
+  } else {
+    console.log(`[SECOND HALF] ${a}: ${b} `);
+  }
+}
+
