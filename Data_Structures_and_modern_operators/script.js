@@ -438,3 +438,31 @@ console.log(rest.get(arr1));
 rest.set(document.querySelector(`h1`), `Heading`);
 console.log(rest);
 
+const question = new Map([
+  [`question`, `What is the best prog language?`],
+  [1, `JS`],
+  [2, `C++`],
+  [3, `Python`],
+  [`correct`, 1],
+  [true, `BRAVO`],
+  [false, `TRY AGAIN!`],
+]);
+
+console.log(question);
+
+// const mapHours = new Map(Object.entries(restaurant.openingHours));
+// console.log(mapHours);
+
+console.log(question.get(`question`));
+
+for (const [a, b] of question) {
+  if (typeof a === `number`) {
+    console.log(a, b);
+  }
+}
+
+// const answer = Number(prompt(`ANSWER`));
+const answer = 1;
+
+console.log(question.get(answer === question.get(`correct`)));
+
