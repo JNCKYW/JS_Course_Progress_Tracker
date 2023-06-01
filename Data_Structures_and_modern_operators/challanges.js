@@ -153,6 +153,14 @@ let eventCounter = 90 / gameEvents.size;
 console.log(`An event happened, on 
 average, every ${eventCounter} minutes`);
 
+//here is second method
+
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(
+  `An event happened, on average, every ${time / gameEvents.size} minutes`
+);
+
 for (const [a, b] of gameEvents) {
   if (a < 45) {
     console.log(`[FIRST HALF] ${a}: ${b} `);
