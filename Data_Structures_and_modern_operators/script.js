@@ -465,7 +465,7 @@ for (const [a, b] of question) {
 const answer = 1;
 
 console.log(question.get(answer === question.get(`correct`)));
-*/
+
 
 const airline = `TAP Air Portugal`;
 const plane = `A320`;
@@ -493,3 +493,37 @@ const checkMiddleSeat = function (seat) {
 checkMiddleSeat(`11B`);
 checkMiddleSeat(`11C`);
 checkMiddleSeat(`11E`);
+*/
+
+const airline = `TAP Air Portugal`;
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+const passenger = `jOnas`;
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passenger[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+const email = `hello@jonas.io`;
+const loginEmail = `  Hello@Jonas.Io \n`;
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+const correctEmail = loginEmail.toLowerCase().trim();
+console.log(correctEmail);
+
+const priceGB = `288,97$`;
+const priceUS = priceGB.replace(`$`, `#`).replace(`,`, `.`);
+console.log(priceUS);
+
+const buba = `buba buba`;
+console.log(buba.replaceAll(`buba`, `Czoko`));
+
+//Booleans
+
+const plane = `A320neo`;
+console.log(plane.includes(`A320`));
+console.log(plane.startsWith(`B`));
+console.log(plane.endsWith(`o`));
+
