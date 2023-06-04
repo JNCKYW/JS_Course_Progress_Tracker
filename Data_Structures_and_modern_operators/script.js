@@ -363,7 +363,7 @@ const entries = Object.entries(restaurant.openingHours);
 for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we are open at ${open} and closed ${close}`);
 }
-*/
+
 
 console.log(`#########################################`);
 console.log(`#######-----------SETS------------#######`);
@@ -465,4 +465,31 @@ for (const [a, b] of question) {
 const answer = 1;
 
 console.log(question.get(answer === question.get(`correct`)));
+*/
 
+const airline = `TAP Air Portugal`;
+const plane = `A320`;
+
+console.log(plane[0]);
+console.log(plane.length);
+console.log(airline.indexOf(`r`));
+console.log(airline.lastIndexOf(`r`));
+console.log(airline.indexOf(`Portugal`));
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+console.log(airline.slice(0, airline.indexOf(` `)));
+console.log(airline.slice(airline.lastIndexOf(` `) + 1));
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -2));
+
+const checkMiddleSeat = function (seat) {
+  console.log(
+    seat.slice(-1) === `B` || seat.slice(-1) === `E`
+      ? `middle seat`
+      : `window or corridor seat`
+  );
+};
+
+checkMiddleSeat(`11B`);
+checkMiddleSeat(`11C`);
+checkMiddleSeat(`11E`);
