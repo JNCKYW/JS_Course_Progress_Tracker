@@ -493,7 +493,7 @@ const checkMiddleSeat = function (seat) {
 checkMiddleSeat(`11B`);
 checkMiddleSeat(`11C`);
 checkMiddleSeat(`11E`);
-*/
+
 
 const airline = `TAP Air Portugal`;
 console.log(airline.toLowerCase());
@@ -526,4 +526,47 @@ const plane = `A320neo`;
 console.log(plane.includes(`A320`));
 console.log(plane.startsWith(`B`));
 console.log(plane.endsWith(`o`));
+*/
 
+console.log(`nice+string+here`.split(`+`));
+
+const [firstName, lastName] = `Janusz Wojciechowski`.split(` `);
+
+const newName = [`Mr.`, firstName, lastName].join(` `);
+console.log(newName);
+
+const capitalizeName = function (name) {
+  let arr = name.split(` `);
+  let i = 0;
+  for (let x of arr) {
+    arr[i] = x[0].toUpperCase() + x.slice(1);
+    i++;
+  }
+  return console.log(arr.join(` `));
+};
+capitalizeName(`janusz wojciechowski`);
+capitalizeName(`janusz waldemar jan wojciechowski`);
+
+const message = `Go to gate 23!`;
+
+console.log(message.padStart(25, `+`));
+console.log(message.padEnd(25, `-`));
+
+const masking = function (number) {
+  number += ``;
+  const lastFour = number.slice(-4);
+  console.log(lastFour.padStart(number.length, `*`));
+};
+
+masking(12345678123213378);
+masking(`12345678`);
+masking(12345678910);
+
+const message2 = `Bad weather... All flights delayed // `;
+console.log(message2.repeat(5));
+
+const planesInLine = function (x) {
+  console.log(`There are ${x} planes in line ${`3==D `.repeat(x)}`);
+};
+
+planesInLine(4);
