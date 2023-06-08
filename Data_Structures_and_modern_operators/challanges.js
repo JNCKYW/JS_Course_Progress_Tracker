@@ -169,5 +169,39 @@ for (const [a, b] of gameEvents) {
   }
 }*/
 
- document.body.append(document.createElement('textarea'));
- document.body.append(document.createElement('button'));
+/*
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+*/
+
+console.log(`------------CHALLANGE-4-----------`);
+
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+const btn = document.querySelector(`button`);
+
+btn.addEventListener(`click`, function () {
+  const text = document.querySelector(`textarea`).value;
+  const textArr = text.split(`\n`);
+  let i = 0;
+  for (let word of textArr) {
+    const wordTrimmed = word.trim();
+    const index = wordTrimmed.indexOf(`_`);
+    const wordRemoved = wordTrimmed.replace(`_`, ``);
+    const wordToLower = wordRemoved.toLowerCase();
+    const wordCorrect =
+      wordToLower.slice(0, index) +
+      wordToLower[index].toUpperCase() +
+      wordToLower.slice(index + 1);
+    i++;
+    console.log(wordCorrect.padEnd(20), `✅`.repeat(i));
+  }
+});
+
+//MY SOLUTION ⬆⬆⬆⬆⬆⬆
+
+//TEACHER SOLUTION ⬇⬇⬇⬇⬇⬇
