@@ -1,5 +1,6 @@
 "use strict";
 /*
+
 console.log(`------------CHALLANGE-1-----------`);
 
 const game = {
@@ -153,21 +154,14 @@ let eventCounter = 90 / gameEvents.size;
 console.log(`An event happened, on 
 average, every ${eventCounter} minutes`);
 
-//here is second method
-
-const time = [...gameEvents.keys()].pop();
-console.log(time);
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
-
 for (const [a, b] of gameEvents) {
   if (a < 45) {
     console.log(`[FIRST HALF] ${a}: ${b} `);
   } else {
     console.log(`[SECOND HALF] ${a}: ${b} `);
   }
-}*/
+}
+*/
 
 /*
 underscore_case
@@ -175,7 +169,7 @@ underscore_case
 Some_Variable 
   calculate_AGE
 delayed_departure
-*/
+
 
 console.log(`------------CHALLANGE-4-----------`);
 
@@ -205,3 +199,20 @@ btn.addEventListener(`click`, function () {
 //MY SOLUTION ⬆⬆⬆⬆⬆⬆
 
 //TEACHER SOLUTION ⬇⬇⬇⬇⬇⬇
+
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+document.querySelector(`button`).addEventListener(`click`, function () {
+  const text = document.querySelector(`textarea`).value;
+  const textArr = text.split(`\n`);
+  for (const [i, word] of textArr.entries()) {
+    const [first, second] = word.toLowerCase().trim().split(`_`);
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${`✅`.repeat(i + 1)}`);
+  }
+});
+*/
