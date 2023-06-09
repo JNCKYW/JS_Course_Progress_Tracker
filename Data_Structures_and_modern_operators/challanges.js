@@ -216,3 +216,30 @@ document.querySelector(`button`).addEventListener(`click`, function () {
   }
 });
 */
+
+///////////////////////////////////////
+// String Methods Practice
+
+const flights =
+  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+
+const flightsFixed = flights.replace(flights[0], ``);
+const lines = flightsFixed.split(`+_`);
+
+for (const line of lines) {
+  let [x, from, to, time] = line.split(`;`);
+  x = x.startsWith(`Delayed`)
+    ? x.replace(x[0], `🔴 D`).replace(`_`, ` `)
+    : x.replace(`_`, ` `);
+
+  console.log(
+    `${x} from ${from.slice(0, 3).toUpperCase()} to ${to
+      .slice(0, 3)
+      .toUpperCase()} (${time.replace(`:`, `h `)}m)`.padStart(46)
+  );
+}
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
