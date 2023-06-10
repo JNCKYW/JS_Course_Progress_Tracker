@@ -45,4 +45,107 @@ const newPassport = function (person) {
 
 newPassport(jonas);
 checkIn(flight, jonas);
+
+const oneWord = function (str) {
+  return str.replace(/ /g, ``).toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(` `);
+  return [first.toUpperCase(), ...others].join(` `);
+};
+
+const transformer = function (str, fn) {
+  console.log(fn(str));
+  console.log(`transformed by: ${fn.name}`);
+};
+
+transformer(`JavaScript is the best`, upperFirstWord);
+transformer(`JavaScript is the best`, oneWord);
+
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greetWitaj = greet(`Witaj`);
+greetWitaj(`Michał`);
+greetWitaj(`Janusz`);
+
+greet(`Siema`)(`Eniu`);
 */
+
+const lufthansa = {
+  airline: `Lutfhansa`,
+  iataCode: `LH`,
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, `Janusz Wojciechowski`);
+console.log(lufthansa.bookings);
+
+const eurowings = {
+  airline: `Eurowings`,
+  iataCode: `EW`,
+  bookings: [],
+};
+
+//CALL CALL CALL CALL
+
+const book = lufthansa.book;
+
+book.call(eurowings, 23, `Janusz Lulu`);
+book.call(lufthansa, 222, `Buba Czoko`);
+
+const flightData = [583, `Buba Hummus`];
+book.call(eurowings, ...flightData);
+
+//BIND BIND BIND BIND
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+
+bookEW(222, `BUBA BUBA`);
+bookLH(333, `CHLEB CHLEB`);
+
+const bookEW23 = book.bind(eurowings, 23);
+
+bookEW23(`Janusz`);
+bookEW23(`Ola`);
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector(`.buy`)
+  .addEventListener(`click`, lufthansa.buyPlane.bind(lufthansa));
+
+const addTax = (rate, value) => value + value * (rate / 100);
+
+console.log(addTax(10, 200));
+
+const addVat = addTax.bind(null, 23);
+
+console.log(addVat(300));
+
+const taxCalc = function (tax) {
+  return function (price) {
+    console.log((tax / 100) * price + price);
+  };
+};
+
+const taxCalc23 = taxCalc(23);
+
+taxCalc23(100);
+taxCalc(23)(100);
