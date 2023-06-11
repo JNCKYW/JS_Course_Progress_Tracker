@@ -75,7 +75,7 @@ greetWitaj(`Michał`);
 greetWitaj(`Janusz`);
 
 greet(`Siema`)(`Eniu`);
-*/
+
 
 const lufthansa = {
   airline: `Lutfhansa`,
@@ -149,3 +149,63 @@ const taxCalc23 = taxCalc(23);
 
 taxCalc23(100);
 taxCalc(23)(100);
+
+
+// const runOnce = function () {
+//   console.log(`This will never happen again`);
+// };
+
+// runOnce();
+
+(function () {
+  console.log(`This will never happen again`);
+})();
+
+(() => console.log(`This will never happen again`))();
+
+{
+  const privateData = 23;
+}
+
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+g();
+f();
+
+const boardPassengers = function (num, wait) {
+  const perGroup = num / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${num} passengers`);
+    console.log(`Thera are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180, 10);
+*/
