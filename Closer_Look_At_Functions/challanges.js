@@ -1,5 +1,5 @@
 "use strict";
-
+/*
 const poll = {
   question: "What is your favourite programming language?",
   options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
@@ -31,3 +31,12 @@ const poll = {
 document
   .querySelector(`.poll`)
   .addEventListener(`click`, poll.registerNewAnswer.bind(poll));
+
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+  document.querySelector(`body`).addEventListener(`click`, function () {
+    header.style.color = `blue`;
+  });
+})();
+*/
