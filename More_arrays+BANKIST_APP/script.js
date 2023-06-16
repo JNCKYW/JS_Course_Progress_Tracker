@@ -56,6 +56,21 @@ console.log(arr.at(-1));
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+const eurToUsd = 1.1;
+
+const movementsUsd = movements.map((mov) => mov * eurToUsd);
+
+console.log(movementsUsd);
+
+const movementDescription = movements.map(function (value, i) {
+  return `Movement ${
+    i + 1
+  }: You ${value > 0 ? `deposited` : `withdrew`} ${value}`;
+});
+
+console.log(movementDescription);
+
+
 for (const [z, x] of movements.entries()) {
   if (x > 0) {
     console.log(`${z + 1}: DEPOSITED ${x}`);
@@ -169,3 +184,4 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
