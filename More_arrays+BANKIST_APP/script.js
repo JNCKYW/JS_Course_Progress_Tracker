@@ -70,6 +70,17 @@ const movementDescription = movements.map(function (value, i) {
 
 console.log(movementDescription);
 
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+console.log(deposits);
+
+const withdrawals = movements.filter(function (mov) {
+  return mov < 0;
+});
+console.log(withdrawals);
+
 
 for (const [z, x] of movements.entries()) {
   if (x > 0) {
@@ -185,3 +196,16 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const usernameCreator = function (acc) {
+  acc.forEach(function (account) {
+    account.username = account.owner
+      .toLowerCase()
+      .split(` `)
+      .map(function (x) {
+        return x[0];
+      })
+      .join(``);
+  });
+};
+
+usernameCreator(accounts);
