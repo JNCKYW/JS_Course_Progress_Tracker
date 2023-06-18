@@ -20,4 +20,29 @@ const checkDogs = function (arr1, arr2) {
   });
 };
 
-checkDogs(dogsJulia, dogsKate);
+// checkDogs(dogsJulia, dogsKate);
+
+const Data1 = [5, 2, 4, 1, 15, 8, 3];
+const Data2 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcHumanAge = function (ages) {
+  const humanAges = ages.map(function (age) {
+    if (age <= 2) {
+      return age * 2;
+    } else {
+      return 16 + age * 4;
+    }
+  });
+  const onlyAdults = humanAges.filter(function (age) {
+    if (age >= 18) {
+      return age;
+    }
+  });
+  const averageAge = onlyAdults.reduce(function (sum, age) {
+    return sum + age;
+  });
+  return averageAge / onlyAdults.length;
+};
+
+console.log(calcHumanAge(Data1));
+console.log(calcHumanAge(Data2));
