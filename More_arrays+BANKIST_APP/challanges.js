@@ -26,22 +26,23 @@ const Data1 = [5, 2, 4, 1, 15, 8, 3];
 const Data2 = [16, 6, 10, 5, 6, 1, 4];
 
 const calcHumanAge = function (ages) {
-  const humanAges = ages.map(function (age) {
-    if (age <= 2) {
-      return age * 2;
-    } else {
-      return 16 + age * 4;
-    }
-  });
-  const onlyAdults = humanAges.filter(function (age) {
-    if (age >= 18) {
-      return age;
-    }
-  });
-  const averageAge = onlyAdults.reduce(function (sum, age) {
-    return sum + age;
-  });
-  return averageAge / onlyAdults.length;
+  const humanAges = ages
+    .map(function (age) {
+      if (age <= 2) {
+        return age * 2;
+      } else {
+        return 16 + age * 4;
+      }
+    })
+    .filter(function (age) {
+      if (age >= 18) {
+        return age;
+      }
+    })
+    .reduce(function (sum, age, i, arr) {
+      return sum + age / arr.length;
+    }, 0);
+  return humanAges;
 };
 
 console.log(calcHumanAge(Data1));
