@@ -56,6 +56,12 @@ console.log(arr.at(-1));
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+const balance = movements.reduce(function (sum, val) {
+  return sum + val;
+}, 0);
+
+console.log(balance);
+
 const eurToUsd = 1.1;
 
 const movementsUsd = movements.map((mov) => mov * eurToUsd);
@@ -207,5 +213,22 @@ const usernameCreator = function (acc) {
       .join(``);
   });
 };
-
 usernameCreator(accounts);
+
+const balanceCalc = function (acc) {
+  const balance = acc.movements.reduce(function (sum, val) {
+    return sum + val;
+  });
+  return (labelBalance.textContent = `${balance}€`);
+};
+balanceCalc(account1);
+
+// const maxCalc = function (acc) {
+//   const maximum = acc.movements.reduce(function (max, value) {
+//     if (value > max) {
+//       max = value;
+//     }
+//     return max;
+//   }, 0);
+//   console.log(maximum);
+// };
