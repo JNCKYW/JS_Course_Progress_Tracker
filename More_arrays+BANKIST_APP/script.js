@@ -56,6 +56,20 @@ console.log(arr.at(-1));
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+const movementsInUsd = movements
+  .filter(function (mov) {
+    return mov > 0;
+  })
+  .map(function (mov) {
+    return mov * eurToUsd;
+  })
+  .reduce(function (sum, mov) {
+    return sum + mov;
+  }, 0);
+
+console.log(movementsInUsd);
+
+
 const balance = movements.reduce(function (sum, val) {
   return sum + val;
 }, 0);
@@ -194,7 +208,7 @@ const displayMovements = function (movements) {
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-      <div class="movements__value">${mov}</div>
+      <div class="movements__value">${mov}€</div>
     </div>`;
 
     containerMovements.insertAdjacentHTML(`afterbegin`, html);
@@ -232,3 +246,42 @@ balanceCalc(account1);
 //   }, 0);
 //   console.log(maximum);
 // };
+
+const calcDisplaySummary = function (acc) {
+  //
+  const incomes = acc.movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .reduce(function (sum, mov) {
+      return sum + mov;
+    });
+  //
+  const outcomes = acc.movements
+    .filter(function (mov) {
+      return mov < 0;
+    })
+    .reduce(function (sum, mov) {
+      return sum + mov;
+    });
+  //
+  const interest = acc.movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .map(function (mov) {
+      return mov * 0.012;
+    })
+    .filter(function (mov) {
+      return mov >= 1;
+    })
+    .reduce(function (sum, mov) {
+      return sum + mov;
+    });
+
+  labelSumInterest.textContent = `${interest}€`;
+  labelSumIn.textContent = `${incomes}€`;
+  labelSumOut.textContent = `${outcomes}€`;
+};
+
+calcDisplaySummary(account1);
