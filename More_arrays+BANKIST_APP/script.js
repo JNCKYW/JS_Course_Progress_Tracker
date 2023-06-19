@@ -235,9 +235,9 @@ const usernameCreator = function (acc) {
 };
 usernameCreator(accounts);
 
-const displayMovements = function (movements) {
+const displayMovements = function (acc) {
   containerMovements.innerHTML = ``;
-  movements.forEach(function (mov, i) {
+  acc.movements.forEach(function (mov, i) {
     const type = mov > 0 ? `deposit` : `withdrawal`;
 
     const html = `
@@ -251,15 +251,13 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML(`afterbegin`, html);
   });
 };
-displayMovements(account1.movements);
 
 const balanceCalc = function (acc) {
   const balance = acc.movements.reduce(function (sum, val) {
     return sum + val;
-  });
+  }, 0);
   return (labelBalance.textContent = `${balance}€`);
 };
-balanceCalc(account1);
 
 // const maxCalc = function (acc) {
 //   const maximum = acc.movements.reduce(function (max, value) {
@@ -281,7 +279,7 @@ const calcDisplaySummary = function (acc) {
     })
     .reduce(function (sum, mov) {
       return sum + mov;
-    });
+    }, 0);
   //
   const outcomes = acc.movements
     .filter(function (mov) {
@@ -289,25 +287,52 @@ const calcDisplaySummary = function (acc) {
     })
     .reduce(function (sum, mov) {
       return sum + mov;
-    });
+    }, 0);
   //
   const interest = acc.movements
     .filter(function (mov) {
       return mov > 0;
     })
     .map(function (mov) {
-      return mov * 0.012;
+      return (mov * acc.interestRate) / 100;
     })
     .filter(function (mov) {
       return mov >= 1;
     })
     .reduce(function (sum, mov) {
       return sum + mov;
-    });
+    }, 0);
 
   labelSumInterest.textContent = `${interest}€`;
   labelSumIn.textContent = `${incomes}€`;
   labelSumOut.textContent = `${outcomes}€`;
 };
 
-calcDisplaySummary(account1);
+/// LOGIN TO APP
+
+let currentAccount;
+btnLogin.addEventListener(`click`, function (event) {
+  event.preventDefault();
+  currentAccount = accounts.find(function (acc) {
+    if (inputLoginUsername.value === acc.username) {
+      return acc;
+    }
+  });
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // DISPLAY UI
+    labelWelcome.textContent = `Welcome Back, ${
+      currentAccount.owner.split(` `)[0]
+    }`;
+    containerApp.style.opacity = 100;
+    // CLEAR INPUT FIELDS
+    inputLoginUsername.value = inputLoginPin.value = ``;
+    // DISPLAY MOVEMENTS
+    displayMovements(currentAccount);
+    // DISPLAY balance
+    balanceCalc(currentAccount);
+    // DISPLAY summary
+    calcDisplaySummary(currentAccount);
+  } else {
+    labelWelcome.textContent = `!!! WRONG LOGIN OR PIN !!!`;
+  }
+});
