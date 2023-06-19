@@ -140,6 +140,30 @@ const xxx = new Set([`USD`, `GBP`, `USD`, `EUR`, `EUR`]);
 xxx.forEach(function (value, valueDuplicate, set) {
   console.log(value, valueDuplicate, set);
 });
+
+// FIND
+
+const firstWithdrawal = account1.movements.find(function (mov) {
+  return mov < 0;
+});
+
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(function (acc) {
+  return acc.owner === `Jessica Davis`;
+});
+
+console.log(account);
+let accountt = ``;
+for (const acc of accounts) {
+  if (acc.owner === `Jessica Davis`) {
+    accountt = acc;
+  }
+}
+
+console.log(accountt);
 */
 
 const account1 = {
@@ -198,6 +222,19 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+const usernameCreator = function (acc) {
+  acc.forEach(function (account) {
+    account.username = account.owner
+      .toLowerCase()
+      .split(` `)
+      .map(function (x) {
+        return x[0];
+      })
+      .join(``);
+  });
+};
+usernameCreator(accounts);
+
 const displayMovements = function (movements) {
   containerMovements.innerHTML = ``;
   movements.forEach(function (mov, i) {
@@ -216,19 +253,6 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
-const usernameCreator = function (acc) {
-  acc.forEach(function (account) {
-    account.username = account.owner
-      .toLowerCase()
-      .split(` `)
-      .map(function (x) {
-        return x[0];
-      })
-      .join(``);
-  });
-};
-usernameCreator(accounts);
-
 const balanceCalc = function (acc) {
   const balance = acc.movements.reduce(function (sum, val) {
     return sum + val;
@@ -246,6 +270,8 @@ balanceCalc(account1);
 //   }, 0);
 //   console.log(maximum);
 // };
+
+// maxCalc(account1);
 
 const calcDisplaySummary = function (acc) {
   //
