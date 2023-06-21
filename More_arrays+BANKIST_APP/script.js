@@ -387,5 +387,5 @@ btnClose.addEventListener(`click`, function (e) {
   containerApp.style.opacity = 0;
 
   // CLEAR INPUTS
-  inputTransferTo.value = inputTransferAmount.value = ``;
+  inputCloseUsername.value = inputClosePin.value = ``;
 });
