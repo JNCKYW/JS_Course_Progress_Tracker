@@ -318,7 +318,6 @@ const updateUI = function (acc) {
 };
 
 /// ##### LOGIN TO APP #####
-
 let currentAccount;
 btnLogin.addEventListener(`click`, function (event) {
   event.preventDefault();
@@ -362,6 +361,21 @@ btnTransfer.addEventListener(`click`, function (event) {
   }
   updateUI(currentAccount);
   inputTransferTo.value = inputTransferAmount.value = ``;
+});
+
+// ##### LOAN ####
+btnLoan.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  const loan = Number(inputLoanAmount.value);
+  const condition = currentAccount.movements.some(function (mov) {
+    return mov >= loan / 10;
+  });
+
+  if (condition && loan > 0) {
+    currentAccount.movements.push(loan);
+  }
+  updateUI(currentAccount);
+  inputLoanAmount.value = ``;
 });
 
 // ##### CLOSE ACCOUNT #####
