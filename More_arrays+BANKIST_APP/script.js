@@ -403,3 +403,31 @@ btnClose.addEventListener(`click`, function (e) {
   // CLEAR INPUTS
   inputCloseUsername.value = inputClosePin.value = ``;
 });
+
+/*
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+const arrDeep = [[1, [2, [3, 4]]], [4, 5, 6], 7, 8];
+console.log(arrDeep.flat(3));
+
+const overallBalance = accounts
+  .map(function (acc) {
+    return acc.movements;
+  })
+  .flat()
+  .reduce(function (sum, mov) {
+    return sum + mov;
+  }, 0);
+
+console.log(overallBalance);
+
+const overallBalance2 = accounts
+  .flatMap(function (acc) {
+    return acc.movements;
+  })
+  .reduce(function (sum, mov) {
+    return sum + mov;
+  }, 0);
+
+console.log(overallBalance2);
+*/
