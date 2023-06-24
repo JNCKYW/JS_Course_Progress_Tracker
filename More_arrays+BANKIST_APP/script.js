@@ -222,6 +222,8 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+let currentAccount;
+
 const usernameCreator = function (acc) {
   acc.forEach(function (account) {
     account.username = account.owner
@@ -235,9 +237,13 @@ const usernameCreator = function (acc) {
 };
 usernameCreator(accounts);
 
-const displayMovements = function (acc) {
+const displayMovements = function (acc, sort = false) {
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
+
   containerMovements.innerHTML = ``;
-  acc.movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? `deposit` : `withdrawal`;
 
     const html = `
@@ -318,7 +324,7 @@ const updateUI = function (acc) {
 };
 
 /// ##### LOGIN TO APP #####
-let currentAccount;
+
 btnLogin.addEventListener(`click`, function (event) {
   event.preventDefault();
   currentAccount = accounts.find(function (acc) {
@@ -404,6 +410,15 @@ btnClose.addEventListener(`click`, function (e) {
   inputCloseUsername.value = inputClosePin.value = ``;
 });
 
+// ##### SORT #####
+
+let sorted = false;
+btnSort.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount, !sorted);
+  sorted = !sorted;
+});
+
 /*
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
@@ -430,4 +445,18 @@ const overallBalance2 = accounts
   }, 0);
 
 console.log(overallBalance2);
+
+
+const owners = [`Jonas`, `Zach`, `Adam`, `Martha`];
+
+console.log(owners.sort());
+
+console.log(
+  account1.movements.sort(function (a, b) {
+    return a - b;
+  })
+);
+
+const arr = [1, 2, 3, 4, 5];
+console.log(arr.sort((a, b) => b - a));
 */
