@@ -483,4 +483,9 @@ labelBalance.addEventListener(`click`, function (e) {
   );
   console.log(y);
 });
+
+const diceRolls = Array.from({ length: 100 }, () =>
+  Math.floor(Math.random() * 6 + 1)
+);
+console.log(diceRolls);
 */
