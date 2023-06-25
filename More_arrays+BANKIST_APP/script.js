@@ -412,10 +412,10 @@ btnClose.addEventListener(`click`, function (e) {
 
 // ##### SORT #####
 
-let sorted = false;
+let sorted = true;
 btnSort.addEventListener(`click`, function (e) {
   e.preventDefault();
-  displayMovements(currentAccount, !sorted);
+  displayMovements(currentAccount, sorted);
   sorted = !sorted;
 });
 
@@ -459,4 +459,28 @@ console.log(
 
 const arr = [1, 2, 3, 4, 5];
 console.log(arr.sort((a, b) => b - a));
+
+const arr = new Array(7);
+console.log(arr);
+
+// arr.fill(1, 3, 5);
+arr.fill(23, 2, 3);
+console.log(arr);
+
+const x = Array.from({ length: 7 }, function (_, i) {
+  return i + 1;
+});
+
+console.log(x);
+
+labelBalance.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  const y = Array.from(
+    document.querySelectorAll(`.movements__value`),
+    function (el) {
+      return el.textContent.replace(`€`, ``);
+    }
+  );
+  console.log(y);
+});
 */
