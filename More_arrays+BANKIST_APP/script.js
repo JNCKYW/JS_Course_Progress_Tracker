@@ -484,8 +484,68 @@ labelBalance.addEventListener(`click`, function (e) {
   console.log(y);
 });
 
+
 const diceRolls = Array.from({ length: 100 }, () =>
   Math.floor(Math.random() * 6 + 1)
 );
 console.log(diceRolls);
 */
+
+//PRACTICE LESSONS
+
+//1
+const BankDepositSum = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .filter(function (mov) {
+    return mov > 0;
+  })
+  .reduce(function (sum, x) {
+    return sum + x;
+  }, 0);
+
+console.log(BankDepositSum);
+
+//2
+const howManyDepo = //accounts
+  // .map((acc) => acc.movements)
+  // .flat()
+  // .filter((mov) => mov >= 1000).length;
+  accounts
+    .flatMap((acc) => acc.movements)
+    .reduce((count, val) => (val >= 1000 ? ++count : count), 0);
+console.log(howManyDepo);
+
+//3
+
+const { deposits, withdrawals } = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce(
+    function (sum, cur) {
+      cur > 0 ? (sum.deposits += cur) : (sum.withdrawals += cur);
+      return sum;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
+const convertTitleCase = function (title) {
+  const expections = [`a`, `an`, `and`, `the`, `but`, `or`, `on`, `in`, `with`];
+  const titleCase = title
+    .toLowerCase()
+    .split(` `)
+    .map(function (x) {
+      if (expections.includes(x)) {
+        return x;
+      } else {
+        return x[0].toUpperCase() + x.slice(1);
+      }
+    })
+    .join(` `);
+  return console.log(titleCase[0].toUpperCase() + titleCase.slice(1));
+};
+
+convertTitleCase(`this is a nice title`);
+convertTitleCase(`this is a LONG title but not too long`);
+convertTitleCase(`and here is another title with an EXAMPLE`);
