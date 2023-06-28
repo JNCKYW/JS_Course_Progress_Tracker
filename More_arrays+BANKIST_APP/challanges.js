@@ -112,9 +112,9 @@ let currentAccount;
 
 // ##### SHOW MOVEMENTS #####
 
-const displayMovements = function (acc) {
+const displayMovements = function (movements) {
   containerMovements.innerHTML = ``;
-  acc.movements.forEach(function (mov, i) {
+  movements.forEach(function (mov, i) {
     const type = mov > 0 ? `deposit` : `withdrawal`;
     const html = `        
     <div class="movements__row">
@@ -193,7 +193,7 @@ usrenameCreator(accounts);
 // ##### SHOW UI #####
 
 const showUI = function (acc) {
-  displayMovements(acc);
+  displayMovements(acc.movements);
   calcSummary(acc);
   balanceCalc(acc);
 };
@@ -264,4 +264,21 @@ btnClose.addEventListener(`click`, function (e) {
     labelWelcome.textContent = `Login to get started`;
     inputCloseUsername.value = inputClosePin.value = ``;
   }
+});
+
+// ##### SORT #####
+let sorted = true;
+btnSort.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  let movementsSorted = currentAccount.movements.slice().sort(function (a, b) {
+    return b - a;
+  });
+  if (sorted === true) {
+    displayMovements(movementsSorted);
+    document.querySelector(`.btn--sort`).innerHTML = `&downarrow; SORT`;
+  } else if (sorted === false) {
+    displayMovements(currentAccount.movements);
+    document.querySelector(`.btn--sort`).innerHTML = `SORT`;
+  }
+  sorted = !sorted;
 });
