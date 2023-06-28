@@ -282,3 +282,73 @@ btnSort.addEventListener(`click`, function (e) {
   }
   sorted = !sorted;
 });
+
+// #######################
+// ##### CHALLANGE 4 #####
+// #######################
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+
+dogs.forEach(function (dog) {
+  dog.recommended = Math.trunc(dog.weight ** 0.75 * 28);
+});
+
+const sarahsDog = dogs.find(function (dog) {
+  if (dog.owners.includes(`Sarah`) === true) {
+    return dog;
+  }
+});
+
+sarahsDog.recommended > sarahsDog.curFood
+  ? console.log(`too little`)
+  : console.log(`too much`);
+
+const ownersTooMuch = dogs
+  .filter(function (dog) {
+    if (dog.recommended < dog.curFood) {
+      return dog;
+    }
+  })
+  .flatMap(function (dog) {
+    return dog.owners;
+  });
+
+console.log(`${ownersTooMuch.join(` and `)}'s dogs eat too Much!`);
+
+const ownersTooLittle = dogs
+  .filter(function (dog) {
+    if (dog.recommended > dog.curFood) {
+      return dog;
+    }
+  })
+  .flatMap(function (dog) {
+    return dog.owners;
+  });
+
+console.log(`${ownersTooLittle.join(` and `)}'s dogs eat too Little!`);
+
+dogs.forEach(function (dog) {
+  console.log(dog.recommended === dog.curFood);
+});
+
+const okayFoodDogs = dogs.filter(function (dog) {
+  if (
+    dog.recommended * 0.9 < dog.curFood &&
+    dog.recommended * 1.1 > dog.curFood
+  ) {
+    return dog;
+  }
+});
+
+console.log(okayFoodDogs);
+
+const dogsSorted = dogs.slice().sort(function (a, b) {
+  return a.recommended - b.recommended;
+});
+
+console.log(dogsSorted);
