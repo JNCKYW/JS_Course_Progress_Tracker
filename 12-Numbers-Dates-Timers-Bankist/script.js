@@ -257,3 +257,20 @@ btnSort.addEventListener("click", function (e) {
 
 const separators = 287_032_124;
 console.log(separators);
+
+const now = new Date();
+console.log(now);
+
+console.log(new Date(account1.movementsDates[0]));
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime());
+console.log(new Date(2142253380000));
+console.log(Date.now());
