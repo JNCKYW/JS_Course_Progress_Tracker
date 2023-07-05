@@ -22,8 +22,8 @@ const account1 = {
     "2020-04-01T10:17:24.185Z",
     "2020-05-08T14:11:59.604Z",
     "2020-05-27T17:01:17.194Z",
-    "2020-07-11T23:36:17.929Z",
-    "2020-07-12T10:51:36.790Z",
+    "2023-07-01T23:36:17.929Z",
+    "2023-07-04T10:51:36.790Z",
   ],
   currency: "EUR",
   locale: "pt-PT", // de-DE
@@ -92,10 +92,22 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
     const time = new Date(acc.movementsDates[i]);
-    const timeDay = `${time.getDate()}`.padStart(2, 0);
-    const timeMonth = `${time.getMonth() + 1}`.padStart(2, 0);
-    const timeYear = time.getFullYear();
-    const displayDate = `${timeDay}/${timeMonth}/${timeYear}`;
+    const today = new Date();
+    const daysPassed = Math.floor((today - time) / (1000 * 60 * 60 * 24));
+    let displayDate = ``;
+
+    if (daysPassed === 1) {
+      displayDate = `Yesterday`;
+    } else if (daysPassed === 0) {
+      displayDate = `Today`;
+    } else if (daysPassed <= 7) {
+      displayDate = `${daysPassed} Days ago`;
+    } else {
+      const year = time.getFullYear();
+      const month = `${time.getMonth()}`.padStart(2, 0);
+      const day = `${time.getDate()}`.padStart(2, 0);
+      displayDate = `${day}/${month}/${year}`;
+    }
 
     const html = `
       <div class="movements__row">
@@ -189,9 +201,6 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
 
-    // Update UI
-    updateUI(currentAccount);
-
     //SHOW CURRENT TIME
     const time = new Date();
     const timeDay = `${time.getDate()}`.padStart(2, 0);
@@ -201,6 +210,9 @@ btnLogin.addEventListener("click", function (e) {
     const timeHours = `${time.getHours()}`.padStart(2, 0);
 
     labelDate.textContent = `${timeDay}/${timeMonth}/${timeYear}, ${timeHours}:${timeMin}`;
+
+    // Update UI
+    updateUI(currentAccount);
   }
 });
 
@@ -286,22 +298,38 @@ btnSort.addEventListener("click", function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
-const separators = 287_032_124;
-console.log(separators);
+// const separators = 287_032_124;
+// console.log(separators);
 
-const now = new Date();
-console.log(now);
+// const now = new Date();
+// console.log(now);
 
-console.log(new Date(account1.movementsDates[0]));
+// console.log(new Date(account1.movementsDates[0]));
 
-const future = new Date(2037, 10, 19, 15, 23);
-console.log(future.getFullYear());
-console.log(future.getMonth());
-console.log(future.getDay());
-console.log(future.getHours());
-console.log(future.getMinutes());
-console.log(future.getSeconds());
-console.log(future.toISOString());
-console.log(future.getTime());
-console.log(new Date(2142253380000));
-console.log(Date.now());
+// const future = new Date(2037, 10, 22, 15, 23);
+// console.log(future);
+// console.log(future.getFullYear());
+// console.log(future.getMonth());
+// console.log(future.getDay());
+// console.log(future.getDate());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
+// console.log(future.toISOString());
+// console.log(future.getTime());
+// console.log(new Date(2142253380000));
+// console.log(Date.now());
+
+const future = new Date(2037, 10, 22, 15, 23);
+
+console.log(Number(future));
+
+const daysPassed = (date1, date2) =>
+  Math.floor(Math.abs(date1 - date2) / (1000 * 60 * 60 * 24));
+
+const days1 = daysPassed(
+  new Date(2023, 9, 11, 10, 8),
+  new Date(2023, 9, 20, 15, 19)
+);
+
+console.log(days1);
