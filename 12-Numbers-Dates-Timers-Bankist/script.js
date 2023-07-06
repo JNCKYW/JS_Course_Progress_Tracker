@@ -91,6 +91,7 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
+    //IMPLEMENTING DATES
     const time = new Date(acc.movementsDates[i]);
     const today = new Date();
     const daysPassed = Math.floor((today - time) / (1000 * 60 * 60 * 24));
@@ -103,10 +104,19 @@ const displayMovements = function (acc, sort = false) {
     } else if (daysPassed <= 7) {
       displayDate = `${daysPassed} Days ago`;
     } else {
-      const year = time.getFullYear();
-      const month = `${time.getMonth()}`.padStart(2, 0);
-      const day = `${time.getDate()}`.padStart(2, 0);
-      displayDate = `${day}/${month}/${year}`;
+      // const year = time.getFullYear();
+      // const month = `${time.getMonth()}`.padStart(2, 0);
+      // const day = `${time.getDate()}`.padStart(2, 0);
+      // displayDate = `${day}/${month}/${year}`;
+      const options = {
+        year: `numeric`,
+        month: `numeric`,
+        day: `numeric`,
+      };
+      displayDate = `${new Intl.DateTimeFormat(
+        currentAccount.locale,
+        options
+      ).format(time)}`;
     }
 
     const html = `
@@ -173,10 +183,10 @@ const updateUI = function (acc) {
 };
 
 let currentAccount;
-//FAKE LOGGING TO NOT LOG ALWAYS AS WE MAKE A CHANGE IN CODE
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// //FAKE LOGGING TO NOT LOG ALWAYS AS WE MAKE A CHANGE IN CODE
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 ///////////////////////////////////////
 // Event handlers
@@ -202,14 +212,29 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginPin.blur();
 
     //SHOW CURRENT TIME
-    const time = new Date();
-    const timeDay = `${time.getDate()}`.padStart(2, 0);
-    const timeMonth = `${time.getMonth() + 1}`.padStart(2, 0);
-    const timeYear = time.getFullYear();
-    const timeMin = `${time.getMinutes()}`.padStart(2, 0);
-    const timeHours = `${time.getHours()}`.padStart(2, 0);
+    // const time = new Date();
+    // const timeDay = `${time.getDate()}`.padStart(2, 0);
+    // const timeMonth = `${time.getMonth() + 1}`.padStart(2, 0);
+    // const timeYear = time.getFullYear();
+    // const timeMin = `${time.getMinutes()}`.padStart(2, 0);
+    // const timeHours = `${time.getHours()}`.padStart(2, 0);
 
-    labelDate.textContent = `${timeDay}/${timeMonth}/${timeYear}, ${timeHours}:${timeMin}`;
+    // labelDate.textContent = `${timeDay}/${timeMonth}/${timeYear}, ${timeHours}:${timeMin}`;
+
+    const time = new Date();
+    const options = {
+      hour: `numeric`,
+      minute: `numeric`,
+      day: `numeric`,
+      month: `long`,
+      year: `numeric`,
+      weekday: `long`,
+    };
+    const locale = currentAccount.locale;
+
+    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
+      time
+    );
 
     // Update UI
     updateUI(currentAccount);
