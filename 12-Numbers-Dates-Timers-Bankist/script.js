@@ -81,6 +81,26 @@ const inputClosePin = document.querySelector(".form__input--pin");
 /////////////////////////////////////////////////
 // Functions
 
+const startLogoutTimer = function () {
+  let time = 300;
+  const tick = function () {
+    const min = String(Math.floor(time / 60)).padStart(2, 0);
+    const sec = String(Math.trunc(time % 60)).padStart(2, 0);
+
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      containerApp.style.opacity = 0;
+      currentAccount = ``;
+    }
+    time--;
+  };
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 const numberFormatter = function (number, locale, curr) {
   const formated = new Intl.NumberFormat(locale, {
     style: `currency`,
@@ -198,6 +218,10 @@ const createUsernames = function (accs) {
 createUsernames(accounts);
 
 const updateUI = function (acc) {
+  if (timer) {
+    clearInterval(timer);
+  }
+  timer = startLogoutTimer();
   // Display movements
   displayMovements(acc);
 
@@ -208,7 +232,7 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-let currentAccount;
+let currentAccount, timer;
 // //FAKE LOGGING TO NOT LOG ALWAYS AS WE MAKE A CHANGE IN CODE
 // currentAccount = account1;
 // updateUI(currentAccount);
@@ -303,14 +327,16 @@ btnLoan.addEventListener("click", function (e) {
     amount > 0 &&
     currentAccount.movements.some((mov) => mov >= amount * 0.1)
   ) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // ADD TRANSFER DATE
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // ADD TRANSFER DATE
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 3000);
   }
   inputLoanAmount.value = "";
 });
@@ -399,3 +425,23 @@ console.log(
 );
 console.log(`GER:`, new Intl.NumberFormat(`de-DE`, options).format(num));
 console.log(`SYRIA:`, new Intl.NumberFormat(`ar-SY`, options).format(num));
+
+const ingredients = [`spinach`, `olives`];
+
+const pizza = setTimeout(
+  (ing1, ing2) => console.log(`Here is your pizza with ${ing1}, ${ing2}`),
+  3000,
+  ...ingredients
+);
+
+ingredients.includes(`spinach`) && clearTimeout(pizza);
+
+//setInterval
+
+// setInterval(function () {
+//   const now = new Date();
+//   const hour = `${now.getHours()}`.padStart(2, 0);
+//   const minute = `${now.getMinutes()}`.padStart(2, 0);
+//   const second = `${now.getSeconds()}`.padStart(2, 0);
+//   console.log(`${hour}:${minute}:${second}`);
+// }, 1000);
