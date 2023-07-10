@@ -40,3 +40,36 @@ message.innerHTML = `We use cookies for improved functionality and analytics <bu
 
 const header = document.querySelector(`header`);
 header.append(message);
+
+document
+  .querySelector(`.btn--close-cookie`)
+  .addEventListener(`click`, function () {
+    message.remove();
+  });
+
+//STYLES
+message.style.backgroundColor = `#37383d`;
+message.style.width = `120%`;
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + `px`;
+
+// document.documentElement.style.setProperty(`--color-primary`, `orangered`);
+
+//ATRIBUTES
+const logo = document.querySelector(`.nav__logo`);
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.setAttribute(`Janusz`, `Wojciechowski`);
+
+console.log(logo.getAttribute(`Janusz`));
+logo.setAttribute(`data-version-number`, `3.0`);
+logo.setAttribute(`data-version-name`, `ruby`);
+
+console.log(logo.dataset.versionNumber);
+console.log(logo.dataset.versionName);
