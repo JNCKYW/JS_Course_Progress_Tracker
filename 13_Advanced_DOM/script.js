@@ -73,3 +73,18 @@ logo.setAttribute(`data-version-name`, `ruby`);
 
 console.log(logo.dataset.versionNumber);
 console.log(logo.dataset.versionName);
+
+//SMOOTH SCROLLING
+
+const btnScrollTo = document.querySelector(`.btn--scroll-to`);
+const section1 = document.getElementById(`section--1`);
+
+btnScrollTo.addEventListener(`click`, function (e) {
+  // const s1coords = section1.getBoundingClientRect();
+  // window.scrollTo({
+  //   left: s1coords.left,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: `smooth`,
+  // });
+  section1.scrollIntoView({ behavior: `smooth` });
+});
