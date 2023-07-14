@@ -1,6 +1,5 @@
 "use strict";
 
-//just addition
 
 ///////////////////////////////////////
 // Modal window
