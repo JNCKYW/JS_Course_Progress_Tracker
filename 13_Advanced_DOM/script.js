@@ -1,6 +1,5 @@
 "use strict";
 
-
 ///////////////////////////////////////
 // Modal window
 
@@ -60,21 +59,6 @@ message.style.height =
 
 // document.documentElement.style.setProperty(`--color-primary`, `orangered`);
 
-//ATRIBUTES
-const logo = document.querySelector(`.nav__logo`);
-console.log(logo.alt);
-console.log(logo.src);
-console.log(logo.className);
-
-logo.setAttribute(`Janusz`, `Wojciechowski`);
-
-console.log(logo.getAttribute(`Janusz`));
-logo.setAttribute(`data-version-number`, `3.0`);
-logo.setAttribute(`data-version-name`, `ruby`);
-
-console.log(logo.dataset.versionNumber);
-console.log(logo.dataset.versionName);
-
 //SMOOTH SCROLLING
 
 const btnScrollTo = document.querySelector(`.btn--scroll-to`);
@@ -89,3 +73,51 @@ btnScrollTo.addEventListener(`click`, function (e) {
   // });
   section1.scrollIntoView({ behavior: `smooth` });
 });
+
+//EVENTS DELEGATION
+
+document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains(`nav__link`)) {
+    const id = e.target.getAttribute(`href`);
+    document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+  }
+});
+
+//ATRIBUTES
+// const logo = document.querySelector(`.nav__logo`);
+// console.log(logo.alt);
+// console.log(logo.src);
+// console.log(logo.className);
+
+// logo.setAttribute(`Janusz`, `Wojciechowski`);
+
+// console.log(logo.getAttribute(`Janusz`));
+// logo.setAttribute(`data-version-number`, `3.0`);
+// logo.setAttribute(`data-version-name`, `ruby`);
+
+// console.log(logo.dataset.versionNumber);
+// console.log(logo.dataset.versionName);
+
+//TYPES OF EVENTS
+
+// const h1 = document.querySelector(`h1`);
+
+// const h1event = function (e) {
+//   alert(`siema`);
+// };
+
+// h1.addEventListener(`mouseenter`, h1event);
+
+// const navLogo = document.getElementById(`logo`);
+
+// navLogo.addEventListener(`mouseenter`, function () {
+//   h1.removeEventListener(`mouseenter`, h1event);
+// });
+
+// const randomInt = function (max) {
+//   return Math.floor(Math.random() * max) + 1;
+// };
+// const randomColor = `rgb(${randomInt(255)},${randomInt(255)},${randomInt(
+//   255
+// )})`;
