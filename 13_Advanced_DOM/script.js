@@ -84,6 +84,36 @@ document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
   }
 });
 
+//TABBED COMPONENT
+
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabsContainer = document.querySelector(`.operations__tab-container`);
+const tabsContent = document.querySelectorAll(`.operations__content`);
+
+tabsContainer.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  const button = e.target.closest(`.btn`);
+
+  //GUARD CLAUSE
+  if (!button) return;
+
+  //Active tab
+  tabs.forEach(function (tab) {
+    tab.classList.remove(`operations__tab--active`);
+  });
+  button.classList.toggle(`operations__tab--active`);
+
+  //Activate content area
+  const contentToActivate = document.querySelector(
+    `.operations__content--${button.dataset.tab}`
+  );
+
+  tabsContent.forEach(function (tab) {
+    tab.classList.remove(`operations__content--active`);
+  });
+  contentToActivate.classList.add(`operations__content--active`);
+});
+
 //DOM Traversing
 
 //CHILDRENS
