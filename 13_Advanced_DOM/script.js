@@ -93,7 +93,6 @@ const tabsContent = document.querySelectorAll(`.operations__content`);
 tabsContainer.addEventListener(`click`, function (e) {
   e.preventDefault();
   const button = e.target.closest(`.btn`);
-
   //GUARD CLAUSE
   if (!button) return;
 
@@ -101,7 +100,7 @@ tabsContainer.addEventListener(`click`, function (e) {
   tabs.forEach(function (tab) {
     tab.classList.remove(`operations__tab--active`);
   });
-  button.classList.toggle(`operations__tab--active`);
+  button.classList.add(`operations__tab--active`);
 
   //Activate content area
   const contentToActivate = document.querySelector(
@@ -113,6 +112,42 @@ tabsContainer.addEventListener(`click`, function (e) {
   });
   contentToActivate.classList.add(`operations__content--active`);
 });
+
+//LINKS FADE OUT ANIMATION
+
+const handleHOver = function (e, opacity) {
+  e.preventDefault();
+  if (e.target.classList.contains(`nav__link`)) {
+    const hovered = e.target;
+    const siblings = hovered.closest(`.nav`).querySelectorAll(`.nav__link`);
+    const logo = hovered.closest(`.nav`).querySelector(`.nav__logo`);
+
+    siblings.forEach(function (link) {
+      if (link !== hovered) {
+        link.style.opacity = opacity;
+      }
+    });
+    logo.style.opacity = opacity;
+  }
+};
+
+const navBar = document.querySelector(`.nav`);
+
+navBar.addEventListener(`mouseover`, function (e) {
+  handleHOver(e, 0.5);
+});
+navBar.addEventListener(`mouseout`, function (e) {
+  handleHOver(e, 1);
+});
+
+//IMPLEMENTING STICKY NAV
+// const initialCoords = section1.getBoundingClientRect();
+
+// window.addEventListener(`scroll`, function () {
+//   if (this.window.scrollY > initialCoords.top) {
+//     navBar.classList.add(`sticky`);
+//   } else navBar.classList.remove(`sticky`);
+// });
 
 //DOM Traversing
 
