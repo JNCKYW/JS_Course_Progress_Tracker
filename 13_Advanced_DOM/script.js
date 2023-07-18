@@ -152,8 +152,6 @@ const obsOptions = {
 
 const obsFn = function (entries) {
   const entry = entries[0];
-  console.log(entries);
-  console.log(entry);
 
   if (!entry.isIntersecting) {
     nav.classList.add(`sticky`);
