@@ -49,13 +49,13 @@ document
 
 //STYLES
 message.style.backgroundColor = `#37383d`;
-message.style.width = `120%`;
+message.style.width = `100vw`;
 
 console.log(getComputedStyle(message).color);
 console.log(getComputedStyle(message).height);
 
 message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + `px`;
+  Number.parseFloat(getComputedStyle(message).height) + 30 + `px`;
 
 // document.documentElement.style.setProperty(`--color-primary`, `orangered`);
 
@@ -139,6 +139,42 @@ navBar.addEventListener(`mouseover`, function (e) {
 navBar.addEventListener(`mouseout`, function (e) {
   handleHOver(e, 1);
 });
+
+//INTERSECTION OBSERVER API
+
+const nav = document.querySelector(`.nav`);
+
+const obsOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${nav.getBoundingClientRect().height}px`,
+};
+
+const obsFn = function (entries) {
+  const entry = entries[0];
+  console.log(entries);
+  console.log(entry);
+
+  if (!entry.isIntersecting) {
+    nav.classList.add(`sticky`);
+  } else {
+    nav.classList.remove(`sticky`);
+  }
+};
+
+const headerObserver = new IntersectionObserver(obsFn, obsOptions);
+headerObserver.observe(header);
+
+// const obsFn = function (entries, observer) {
+//   console.log(entries);
+// };
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.2],
+// };
+
+// const observer = new IntersectionObserver(obsFn, obsOptions);
+// observer.observe(section1);
 
 //IMPLEMENTING STICKY NAV
 // const initialCoords = section1.getBoundingClientRect();
