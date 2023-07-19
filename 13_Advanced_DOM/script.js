@@ -221,6 +221,41 @@ allImg.forEach(function (img) {
   lazyImgObserver.observe(img);
 });
 
+//SLIDER
+
+const slides = document.querySelectorAll(`.slide`);
+const btnLeft = document.querySelector(`.slider__btn--left`);
+const btnRight = document.querySelector(`.slider__btn--right`);
+let currSlide = 0;
+const maxSlides = slides.length;
+
+const goToSlide = function (slideNum) {
+  slides.forEach(function (slide, i) {
+    slide.style.transform = `translateX(${100 * (i - slideNum)}%)`;
+  });
+};
+
+goToSlide(0);
+
+btnRight.addEventListener(`click`, function (e) {
+  if (currSlide === maxSlides - 1) {
+    currSlide = 0;
+  } else {
+    currSlide++;
+  }
+
+  goToSlide(currSlide);
+});
+
+btnLeft.addEventListener(`click`, function (e) {
+  if (currSlide === 0) {
+    currSlide = maxSlides - 1;
+  } else {
+    currSlide--;
+  }
+  goToSlide(currSlide);
+});
+
 // const obsFn = function (entries, observer) {
 //   console.log(entries);
 // };
