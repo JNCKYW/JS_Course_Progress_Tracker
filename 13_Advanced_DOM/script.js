@@ -163,6 +163,34 @@ const obsFn = function (entries) {
 const headerObserver = new IntersectionObserver(obsFn, obsOptions);
 headerObserver.observe(header);
 
+// REVEALING SECTIONS
+const allSections = document.querySelectorAll(`.section`);
+
+const revealSection = function (entries, observer) {
+  const entry = entries[0];
+  console.log(entry);
+
+  if (entry.isIntersecting) {
+    entry.target.classList.remove(`section--hidden`);
+    observer.unobserve(entry.target);
+  }
+};
+
+const sectionObsOptions = {
+  root: null,
+  threshold: 0.15,
+};
+
+const sectionObserver = new IntersectionObserver(
+  revealSection,
+  sectionObsOptions
+);
+
+allSections.forEach(function (section) {
+  section.classList.add(`section--hidden`);
+  sectionObserver.observe(section);
+});
+
 // const obsFn = function (entries, observer) {
 //   console.log(entries);
 // };
