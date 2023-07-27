@@ -25,3 +25,17 @@ console.log(matilda);
 // 4. function automatically return {}
 
 console.log(janusz instanceof Person);
+
+// Prototypes
+
+Person.prototype.calcAge = function () {
+  console.log(2023 - this.birthYear);
+};
+
+janusz.calcAge();
+matilda.calcAge();
+
+Person.prototype.species = `Homo Sapiens`;
+
+console.log(janusz.species);
+console.log(matilda.species);
