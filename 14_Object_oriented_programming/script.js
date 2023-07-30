@@ -39,4 +39,4 @@ Person.prototype.species = `Homo Sapiens`;
 
 console.log(janusz.species);
 console.log(matilda.species);
-test
+
