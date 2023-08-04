@@ -121,3 +121,20 @@ PersonCl.hey();
   console.log(`hey there`);
 }
 */
+
+const PersonProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+
+steven.init(`Steven`, 2002);
+steven.calcAge();
+console.log(steven);
