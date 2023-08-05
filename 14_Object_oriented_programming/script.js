@@ -44,7 +44,7 @@ console.log(matilda.species);
 const h1 = document.querySelector(`h1`);
 
 console.dir(h1);
-*/
+
 
 //################################
 // ES6 CLASSES
@@ -113,14 +113,14 @@ PersonCl.hey = function () {
 };
 PersonCl.hey();
 
-/*Or You can just add method like normall one into PersonCl but add
+Or You can just add method like normall one into PersonCl but add
 //static keyword before it:
 //
 //
 //static hey(){
   console.log(`hey there`);
 }
-*/
+
 
 const PersonProto = {
   calcAge() {
@@ -138,3 +138,38 @@ const steven = Object.create(PersonProto);
 steven.init(`Steven`, 2002);
 steven.calcAge();
 console.log(steven);
+*/
+
+//################################
+// INHERITANCE BETWEEN CLASSES
+//################################
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  const now = new Date();
+  return now.getFullYear() - this.birthYear;
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+//Linking prototypes (methods that we defined on Person object)
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(
+    `Hi my name is ${
+      this.firstName
+    }, I am ${this.calcAge()} years old and I attend ${this.course} course`
+  );
+};
+
+const mike = new Student(`Mike`, 1998, `Computer science`);
+
+mike.introduce();
