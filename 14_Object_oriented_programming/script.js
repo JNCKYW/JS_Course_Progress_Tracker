@@ -141,7 +141,7 @@ console.log(steven);
 */
 
 //################################
-// INHERITANCE BETWEEN CLASSES
+// INHERITANCE BETWEEN CLASSES //CONSTRU FUN
 //################################
 
 const Person = function (firstName, birthYear) {
@@ -173,3 +173,86 @@ Student.prototype.introduce = function () {
 const mike = new Student(`Mike`, 1998, `Computer science`);
 
 mike.introduce();
+
+//################################
+// INHERITANCE BETWEEN CLASSES //ES6
+//################################
+
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    const now = new Date();
+    return now.getFullYear() - this.birthYear;
+  }
+
+  static hey() {
+    console.log(`Hey there`);
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(
+      `Hi my name is ${
+        this.firstName
+      }, I am ${this.calcAge()} years old and I attend ${this.course} course`
+    );
+  }
+}
+
+const martha = new StudentCl(`Martha`, 1998, `CS`);
+
+martha.introduce();
+
+//################################
+// INHERITANCE BETWEEN CLASSES //Object.create()
+//################################
+
+const PersonProto = {
+  calcAge() {
+    const now = new Date();
+    return now.getFullYear() - this.birthYear;
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+steven.init(`Steven`, 1998);
+
+//
+//
+//
+
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(
+    `Hi my name is ${
+      this.firstName
+    }, I am ${this.calcAge()} years old and I attend ${this.course} course`
+  );
+};
+
+const jay = Object.create(StudentProto);
+jay.init(`Jay`, 1996, `Computer Science`);
+
+console.log(jay);
+jay.introduce();
