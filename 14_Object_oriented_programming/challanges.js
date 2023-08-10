@@ -103,3 +103,52 @@ EV.prototype.accelerate = function () {
 };
 
 const tesla = new EV(`Tesla`, 120, 23);
+
+//##################################
+// ES6 CLASSES INHERITAGE & PRIVATE FIELDS ETC.
+//##################################
+
+class CarCl {
+  constructor(brand, speed) {
+    this.brand = brand;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.brand} going at ${this.speed} km/h`);
+    return this;
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.brand} going at ${this.speed} km/h`);
+    return this;
+  }
+}
+
+class EvCl extends CarCl {
+  #charge;
+  constructor(brand, speed, charge) {
+    super(brand, speed);
+    this.#charge = charge;
+  }
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
+    console.log(
+      `${this.brand} going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+
+const u = new EvCl(`Rivian`, 100, 24);
+u.accelerate().chargeBattery(90).accelerate();
