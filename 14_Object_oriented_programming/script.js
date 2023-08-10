@@ -258,6 +258,10 @@ console.log(jay);
 jay.introduce();
 */
 
+//################################
+// SETTING PRIVATE METHODS AND VARIABLES
+//################################
+
 class Account {
   //public fields
   locale = navigator.language;
@@ -274,16 +278,19 @@ class Account {
   // Public Interface (API)
   deposit(mov) {
     this.#movements.push(mov);
+    return this;
   }
 
   withdrawal(mov) {
     this.#movements.push(-mov);
+    return this;
   }
 
   getLoan(mov) {
     if (this.#approveLoan()) {
       this.#movements.push(mov);
     }
+    return this;
   }
 
   //PRIVATE METHOD
@@ -297,5 +304,16 @@ const acc1 = new Account(`Janusz`, `EUR`, 1234);
 acc1.deposit(200);
 acc1.withdrawal(150);
 acc1.getLoan(250);
+
+console.log(acc1);
+
+//################################
+// CHAINING METHODS
+//################################
+
+//If you want to have chaining methods You have to add //return this//
+//to every method that You want to be chainable
+
+acc1.deposit(500).deposit(300).withdrawal(200).getLoan(300);
 
 console.log(acc1);
