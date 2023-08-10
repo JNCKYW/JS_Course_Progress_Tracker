@@ -138,7 +138,7 @@ const steven = Object.create(PersonProto);
 steven.init(`Steven`, 2002);
 steven.calcAge();
 console.log(steven);
-*/
+
 
 //################################
 // INHERITANCE BETWEEN CLASSES //CONSTRU FUN
@@ -256,3 +256,46 @@ jay.init(`Jay`, 1996, `Computer Science`);
 
 console.log(jay);
 jay.introduce();
+*/
+
+class Account {
+  //public fields
+  locale = navigator.language;
+  //private fields
+  #movements = [];
+  #pin;
+
+  constructor(owner, curr, pin) {
+    this.owner = owner;
+    this.curr = curr;
+    //setting private pin
+    this.#pin = pin;
+  }
+  // Public Interface (API)
+  deposit(mov) {
+    this.#movements.push(mov);
+  }
+
+  withdrawal(mov) {
+    this.#movements.push(-mov);
+  }
+
+  getLoan(mov) {
+    if (this.#approveLoan()) {
+      this.#movements.push(mov);
+    }
+  }
+
+  //PRIVATE METHOD
+  #approveLoan(mov) {
+    return true;
+  }
+}
+
+const acc1 = new Account(`Janusz`, `EUR`, 1234);
+
+acc1.deposit(200);
+acc1.withdrawal(150);
+acc1.getLoan(250);
+
+console.log(acc1);
