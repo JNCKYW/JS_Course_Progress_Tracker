@@ -25,9 +25,9 @@ navigator.geolocation.getCurrentPosition(
 
     const map = L.map("map").setView([latitude, longtitude], 13);
 
-    L.tileLayer("https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
+      maxZoom: 20,
+      subdomains: ["mt0", "mt1", "mt2", "mt3"],
     }).addTo(map);
 
     L.marker([latitude, longtitude])
